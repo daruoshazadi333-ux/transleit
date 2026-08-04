@@ -11,7 +11,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- استایل از فایل جدا -->
 <link rel="stylesheet" href="styles.css">
+
+<!-- محافظت از کپی شدن -->
+<script>
+  // جلوگیری از کلیک راست
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  // جلوگیری از کپی کردن
+  document.addEventListener('copy', e => e.preventDefault());
+  // جلوگیری از انتخاب متن
+  document.addEventListener('selectstart', e => e.preventDefault());
+  // جلوگیری از F12 و DevTools
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'U')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+  // جلوگیری از drag
+  document.addEventListener('dragstart', e => e.preventDefault());
+</script>
 </head>
 <body data-theme="dark">
 
@@ -26,7 +48,7 @@
     </div>
   </div>
 
-  <!-- نوار بالایی -->
+  <!-- نوار بالای اپ -->
   <div class="app-topbar">
     <div class="title-wrap">
       <button class="icon-btn ripple" id="menuBtn" aria-label="باز کردن منو">
@@ -197,6 +219,24 @@
 
 </div>
 
+<!-- جاوااسکریپت از فایل جدا -->
 <script src="script.js"></script>
+
+<!-- لایه محافظتی اضافه -->
+<script>
+  // محافظت از DevTools با Console.clear
+  setInterval(() => {
+    console.clear();
+  }, 1000);
+
+  // تغییر عنوان صفحه در صورت باز شدن DevTools
+  Object.defineProperty(document, 'hidden', {
+    get: function() {
+      document.title = '⚠️ هشدار!';
+      setTimeout(() => { document.title = 'ترجمیار'; }, 200);
+      return false;
+    }
+  });
+</script>
 </body>
 </html>
