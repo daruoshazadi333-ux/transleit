@@ -378,58 +378,9 @@ speakTargetBtn.addEventListener('click', () => speak(targetText.value, targetLan
 /* ===========================================================
    ۱۲) تبدیل گفتار به متن (Speech Recognition) — دکمهٔ میکروفون
    =========================================================== */
-const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-let recognition = null;
-let isRecording = false;
-
-if (SpeechRecognitionAPI){
-  recognition = new SpeechRecognitionAPI();
-  recognition.continuous = false;
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-
-  recognition.onresult = (e) => {
-    const transcript = e.results[0][0].transcript;
-    sourceText.value += (sourceText.value ? ' ' : '') + transcript;
-    updateCharCount();
-  };
-  recognition.onerror = (e) => {
-    const messages = {
-      'not-allowed': 'دسترسی به میکروفون رد شد. لطفاً از تنظیمات مرورگر اجازه دهید.',
-      'no-speech': 'صدایی شنیده نشد. دوباره امتحان کنید.',
-      'audio-capture': 'میکروفونی پیدا نشد.',
-      'network': 'خطای شبکه در تشخیص گفتار.'
-    };
-    showToast(messages[e.error] || 'خطا در تشخیص گفتار', false);
-    stopRecording();
-  };
-  recognition.onend = () => stopRecording();
-
-  micBtn.addEventListener('click', () => {
-    if (isRecording){
-      try { recognition.stop(); } catch(e){ /* از قبل متوقف شده */ }
-      return;
-    }
-    try {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-      const code = sourceLangSel.value;
-      recognition.lang = code === 'fa' ? 'fa-IR' : code;
-      recognition.start();
-      isRecording = true;
-      micBtn.classList.add('recording');
-    } catch(e){
-      showToast('امکان شروع ضبط صدا وجود ندارد', false);
-      stopRecording();
-    }
-  });
-} else {
-  micBtn.disabled = true;
-  micBtn.title = 'مرورگر شما از تشخیص گفتار پشتیبانی نمی‌کند';
-}
-function stopRecording(){
-  isRecording = false;
-  micBtn.classList.remove('recording');
-}
+// میکروفون غیرفعال شده تا دسترسی نخواهد
+micBtn.style.display = 'none';
+micBtn.disabled = true;
 
 /* ===========================================================
    ۱۳) حالت روشن/تاریک با ذخیره در LocalStorage
@@ -537,7 +488,7 @@ function buildEntryItem(entry, kind){
 
   const useBtn = document.createElement('button');
   useBtn.title = 'استفاده مجدد';
-  useBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  useBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   useBtn.addEventListener('click', () => {
     sourceLangSel.value = entry.srcCode;
     targetLangSel.value = entry.tgtCode;
@@ -550,7 +501,7 @@ function buildEntryItem(entry, kind){
 
   const delBtn = document.createElement('button');
   delBtn.title = 'حذف';
-  delBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  delBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   delBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (kind === 'history') removeFromHistory(entry.id); else removeFavorite(entry.id);
