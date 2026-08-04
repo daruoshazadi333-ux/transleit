@@ -1,7 +1,7 @@
 'use strict';
 
 // ============================================================
-// لیست زبان‌ها
+// لیست زبان‌ها با پشتیبانی کامل
 // ============================================================
 const LANGUAGES = [
   { code: 'fa', name: 'فارسی', native: 'فارسی' },
@@ -170,6 +170,11 @@ function getLangName(code) {
   return lang ? lang.name : code;
 }
 
+function getNativeName(code) {
+  const lang = LANGUAGES.find(l => l.code === code);
+  return lang ? lang.native : code;
+}
+
 function showToast(msg, isError = false) {
   toastText.textContent = msg;
   toast.classList.toggle('error', isError);
@@ -215,7 +220,46 @@ function updateCharCount() {
 }
 
 // ============================================================
-// ترجمه
+// بهبود ترجمه - نگهداری علائم
+// ============================================================
+function preservePunctuation(text) {
+  // علائم نگارشی فارسی و انگلیسی
+  const punctuation = /([،؛؟!\.\?\!\:\;\-\—\(\)\[\]\{\}\"\'\u060C\u061B\u061F\u0640])/g;
+  return text.replace(punctuation, ' $1 ').replace(/\s+/g, ' ').trim();
+}
+
+function restorePunctuation(text) {
+  // بازگرداندن علائم به حالت عادی
+  return text.replace(/\s+([،؛؟!\.\?\!\:\;\-\—\(\)\[\]\{\}\"\'\u060C\u061B\u061F\u0640])/g, '$1');
+}
+
+function cleanTranslation(raw, isSingleWord) {
+  if (!raw) return raw;
+  
+  let text = raw.trim();
+  
+  // حذف توضیحات اضافی داخل پرانتز یا کروشه
+  text = text.replace(/\s*[\(\[][^\)\]]*[\)\]]\s*/g, ' ');
+  
+  // اگر کلمه تکی است، فقط اولین معنی را نگه دار
+  if (isSingleWord) {
+    const parts = text.split(/[,،;\/]| or /i);
+    if (parts.length > 0) {
+      text = parts[0].trim();
+    }
+  }
+  
+  // حذف فاصله‌های اضافی
+  text = text.replace(/\s+/g, ' ').trim();
+  
+  // بازگرداندن علائم نگارشی
+  text = restorePunctuation(text);
+  
+  return text;
+}
+
+// ============================================================
+// تابع ترجمه اصلی با پشتیبانی از علائم
 // ============================================================
 function setLoading(isLoading) {
   translateBtn.classList.toggle('loading', isLoading);
@@ -248,45 +292,80 @@ async function translateText() {
   setLoading(true);
 
   try {
+    // حفظ علائم نگارشی
+    const processedText = preservePunctuation(text);
+    
     const response = await fetch('/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, source: srcCode, target: tgtCode }),
+      body: JSON.stringify({ 
+        text: processedText, 
+        source: srcCode, 
+        target: tgtCode 
+      }),
       signal: abortController.signal
     });
 
     if (!response.ok) throw new Error('network');
 
     const data = await response.json();
+    
+    if (!data || !data.responseData || typeof data.responseData.translatedText !== 'string') {
+      throw new Error('bad-response');
+    }
 
-    if (data && data.responseData && data.responseData.translatedText) {
-      targetText.value = data.responseData.translatedText;
-      updateCharCount();
-      saveToHistory({
-        source: text,
-        translated: data.responseData.translatedText,
-        srcCode,
-        tgtCode,
-        time: Date.now()
-      });
-    } else {
+    const rawResult = data.responseData.translatedText;
+    const detailsText = (data.responseDetails ? String(data.responseDetails) : '') + ' ' + rawResult;
+
+    // بررسی خطاهای سرویس
+    const looksLikeServiceWarning =
+      /MYMEMORY WARNING|QUERY LENGTH LIMIT|INVALID (SOURCE|TARGET)|AMBIGUOUS LANGUAGE|IS AN INVALID (SOURCE|TARGET) LANGUAGE|MISSING (SOURCE|TARGET)/i.test(detailsText);
+
+    if (looksLikeServiceWarning || (data.responseStatus && Number(data.responseStatus) >= 400)) {
+      throw new Error('quota-or-service');
+    }
+
+    const isSingleWord = text.trim().split(/\s+/).length === 1;
+    let translated = cleanTranslation(rawResult, isSingleWord);
+
+    if (!translated) {
       throw new Error('empty-result');
     }
 
+    // بازگرداندن علائم نگارشی
+    translated = restorePunctuation(translated);
+
+    targetText.value = translated;
+    updateCharCount();
+
+    saveToHistory({ 
+      source: text, 
+      translated, 
+      srcCode, 
+      tgtCode, 
+      time: Date.now() 
+    });
+
   } catch (err) {
     if (err.name === 'AbortError') return;
+    
     if (!navigator.onLine) {
-      showError('اتصال اینترنت برقرار نیست.');
+      showError('اتصال اینترنت برقرار نیست. لطفاً اتصال خود را بررسی کنید.');
+    } else if (err.message === 'quota-or-service') {
+      showError('سهمیهٔ رایگان سرویس ترجمه برای امروز تمام شده یا زبان انتخابی پشتیبانی نمی‌شود.');
     } else if (err.message === 'empty-result') {
-      showError('ترجمه‌ای برای این متن پیدا نشد.');
+      showError('ترجمه‌ای برای این متن پیدا نشد. متن دیگری را امتحان کنید.');
     } else {
-      showError('خطا در ترجمه. لطفاً دوباره تلاش کنید.');
+      showError('خطا در برقراری ارتباط با سرویس ترجمه. لطفاً دوباره تلاش کنید.');
     }
   } finally {
     setLoading(false);
   }
 }
 
+// ============================================================
+// رویدادهای اصلی
+// ============================================================
 sourceText.addEventListener('input', updateCharCount);
 translateBtn.addEventListener('click', translateText);
 translateFab.addEventListener('click', translateText);
@@ -329,7 +408,7 @@ clearBtn.addEventListener('click', () => {
 });
 
 // ============================================================
-// کپی
+// کپی متن
 // ============================================================
 copyBtn.addEventListener('click', async () => {
   if (!targetText.value) {
@@ -349,14 +428,14 @@ copyBtn.addEventListener('click', async () => {
 });
 
 // ============================================================
-// تبدیل متن به گفتار
+// تبدیل متن به گفتار (با رفع باگ کروم)
 // ============================================================
 function speak(text, langCode) {
   if (!text || !text.trim()) {
     showToast('متنی برای خواندن وجود ندارد', true);
     return;
   }
-  if (!('speechSynthesis' in window)) {
+  if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
     showToast('این مرورگر از خواندن متن پشتیبانی نمی‌کند', true);
     return;
   }
@@ -369,6 +448,7 @@ function speak(text, langCode) {
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = langCode === 'fa' ? 'fa-IR' : (langCode || 'en');
       utter.rate = 0.95;
+      utter.pitch = 1;
 
       utter.onerror = () => {
         clearInterval(speechWatchdog);
@@ -399,7 +479,7 @@ speakSourceBtn.addEventListener('click', () => speak(sourceText.value, sourceLan
 speakTargetBtn.addEventListener('click', () => speak(targetText.value, targetLangSel.value));
 
 // ============================================================
-// تشخیص گفتار
+// تشخیص گفتار (میکروفون)
 // ============================================================
 const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -424,8 +504,8 @@ if (SpeechRecognitionAPI) {
 
   recognition.onerror = (e) => {
     const messages = {
-      'not-allowed': 'دسترسی به میکروفون رد شد.',
-      'no-speech': 'صدایی شنیده نشد.',
+      'not-allowed': 'دسترسی به میکروفون رد شد. لطفاً از تنظیمات مرورگر اجازه دهید.',
+      'no-speech': 'صدایی شنیده نشد. دوباره امتحان کنید.',
       'audio-capture': 'میکروفونی پیدا نشد.',
       'network': 'خطای شبکه در تشخیص گفتار.'
     };
@@ -464,7 +544,7 @@ function stopRecording() {
 }
 
 // ============================================================
-// تم
+// تم روشن/تاریک
 // ============================================================
 function setTheme(theme) {
   document.body.setAttribute('data-theme', theme);
@@ -577,7 +657,7 @@ function buildEntryItem(entry, kind) {
 
   const meta = document.createElement('div');
   meta.className = 'entry-meta';
-
+  
   const langTag = document.createElement('span');
   langTag.className = 'lang-tag';
   langTag.textContent = `${getLangName(entry.srcCode)} ← ${getLangName(entry.tgtCode)}`;
@@ -614,14 +694,14 @@ function buildEntryItem(entry, kind) {
 
   const textWrap = document.createElement('div');
   textWrap.className = 'entry-text';
-
+  
   const src = document.createElement('div');
   src.textContent = entry.source;
-
+  
   const tgt = document.createElement('div');
   tgt.className = 'translated';
   tgt.textContent = entry.translated;
-
+  
   textWrap.appendChild(src);
   textWrap.appendChild(tgt);
 
@@ -694,12 +774,12 @@ document.querySelectorAll('.nav-item').forEach(btn => {
 });
 
 // ============================================================
-// ریپل
+// افکت ریپل
 // ============================================================
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.ripple');
   if (!btn) return;
-
+  
   const rect = btn.getBoundingClientRect();
   const size = Math.max(rect.width, rect.height);
   const circle = document.createElement('span');
@@ -707,7 +787,7 @@ document.addEventListener('click', (e) => {
   circle.style.width = circle.style.height = size + 'px';
   circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
   circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
-
+  
   if (getComputedStyle(btn).position === 'static') {
     btn.style.position = 'relative';
   }
@@ -738,3 +818,5 @@ window.addEventListener('offline', () => showError('اتصال اینترنت ق
 window.addEventListener('online', () => hideError());
 
 console.log('🚀 ترجمیار با موفقیت بارگذاری شد!');
+console.log(`📚 پشتیبانی از ${LANGUAGES.length} زبان`);
+console.log('💡 Ctrl+Enter برای ترجمه');
