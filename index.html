@@ -11,14 +11,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- استایل‌ها از فایل جداگانه -->
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-theme="dark">
 
 <div class="phone-frame" id="phoneFrame">
 
-  <!-- نوار وضعیت شبیه‌ساز گوشی -->
+  <!-- نوار وضعیت -->
   <div class="status-bar">
     <span id="clock">۹:۴۱</span>
     <div class="icons">
@@ -27,7 +26,7 @@
     </div>
   </div>
 
-  <!-- نوار بالای اپ -->
+  <!-- نوار بالایی -->
   <div class="app-topbar">
     <div class="title-wrap">
       <button class="icon-btn ripple" id="menuBtn" aria-label="باز کردن منو">
@@ -43,7 +42,7 @@
     </button>
   </div>
 
-  <!-- منوی کشویی همبرگری -->
+  <!-- منوی کشویی -->
   <div class="drawer-scrim" id="drawerScrim"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer-header">
@@ -56,17 +55,17 @@
       </div>
     </div>
     <nav class="drawer-list">
-      <a class="drawer-item ripple" href="https://rubika.ir/admin10blue" target="_blank" rel="noopener noreferrer">
+      <a class="drawer-item ripple" href="#" target="_blank">
         <span class="drawer-icon">
           <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <span class="drawer-text">
-          <strong>پشتیبانی در روبیکا</strong>
-          <span>@admin10blue</span>
+          <strong>پشتیبانی</strong>
+          <span>تماس با ما</span>
         </span>
       </a>
     </nav>
-    <div class="drawer-footer">ترجمیار — نسخه ۱.۰</div>
+    <div class="drawer-footer">ترجمیار — نسخه ۲.۰</div>
   </aside>
 
   <!-- محتوا -->
@@ -162,13 +161,13 @@
 
   </main>
 
-  <!-- FAB ترجمه -->
+  <!-- FAB -->
   <button class="fab ripple" id="translateFab" aria-label="ترجمه کن">
     <span class="spinner"></span>
     <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 
-  <!-- نوار پیمایش پایین -->
+  <!-- نوار پایین -->
   <nav class="bottom-nav">
     <button class="nav-item active ripple" data-view="translate">
       <span class="pill">
@@ -190,7 +189,7 @@
     </button>
   </nav>
 
-  <!-- اسنک‌بار -->
+  <!-- اسنکبار -->
   <div class="snackbar" id="toast">
     <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span id="toastText">کپی شد</span>
@@ -198,8 +197,6 @@
 
 </div>
 
-<!-- تمام جاوااسکریپت از فایل جداگانه -->
 <script src="script.js"></script>
-
 </body>
 </html>
