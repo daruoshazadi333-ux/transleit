@@ -217,6 +217,7 @@ textarea {
     margin: 0;
     font-weight: 700;
     letter-spacing: -.2px;
+    color: var(--md-on-surface);
 }
 
 .icon-btn {
@@ -317,6 +318,7 @@ textarea {
     margin: 0;
     font-size: 16px;
     font-weight: 700;
+    color: var(--md-on-surface);
 }
 
 .drawer-header p {
@@ -718,6 +720,7 @@ kbd {
     font-size: 19px;
     font-weight: 700;
     margin: 10px 2px 14px;
+    color: var(--md-on-surface);
 }
 
 .list-empty {
@@ -799,6 +802,7 @@ kbd {
 .entry-text {
     font-size: 14px;
     line-height: 1.7;
+    color: var(--md-on-surface);
 }
 
 .entry-text .translated {
