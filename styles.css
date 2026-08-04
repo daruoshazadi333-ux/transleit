@@ -1,249 +1,272 @@
 /* ============================================================
-   ترجمیار - طراحی شبیه اپلیکیشن اندروید (کیفیت بالا)
+   طراحی پیشرفته Material Design 3 - نسخه بهبود یافته
    ============================================================ */
 
+/* ---------- متغیرهای اصلی ---------- */
 :root {
   --md-primary: #6750A4;
   --md-on-primary: #FFFFFF;
   --md-primary-container: #EADDFF;
   --md-on-primary-container: #21005D;
+  --md-secondary: #625B71;
   --md-secondary-container: #E8DEF8;
   --md-on-secondary: #332D41;
+  --md-tertiary: #7D5260;
+  --md-tertiary-container: #FFD8E4;
+  --md-on-tertiary-container: #31111D;
 
   --md-bg: #141218;
-  --md-surface: #211F26;
-  --md-surface-1: #292630;
-  --md-surface-2: #2D2A35;
-  --md-surface-3: #332F3B;
+  --md-surface: #1C1B1F;
+  --md-surface-dim: #141218;
+  --md-surface-bright: #3B383F;
+  --md-surface-container: #211F26;
+  --md-surface-container-high: #2B2930;
+  --md-surface-container-highest: #36343B;
+  --md-surface-container-low: #1A181C;
+  --md-surface-container-lowest: #0F0D13;
+
   --md-on-surface: #E6E0E9;
-  --md-on-surface-var: #CAC4D0;
-  --md-outline: #4A4458;
-  --md-outline-var: #332F3B;
+  --md-on-surface-medium: #CAC4D0;
+  --md-on-surface-variant: #CAC4D0;
+  --md-outline: #938F99;
+  --md-outline-variant: #49454F;
 
   --md-error: #F2B8B5;
-  --md-on-error-container: #601410;
-  --md-error-container: #3B0906;
-  --md-success: #82D89A;
+  --md-error-container: #8C1D18;
+  --md-on-error: #601410;
+  --md-on-error-container: #F9DEDC;
 
-  --shape-xl: 28px;
-  --shape-lg: 20px;
-  --shape-md: 14px;
-  --shape-sm: 10px;
-  --shape-full: 999px;
+  --md-success: #4CAF50;
+  --md-success-container: #1B5E20;
+  --md-on-success-container: #A5D6A7;
 
-  --dur: .22s cubic-bezier(.2, 0, 0, 1);
-  --font: 'Vazirmatn', 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+  --md-warning: #FFB74D;
+  --md-warning-container: #E65100;
 
-  --elev1: 0 1px 3px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.3);
-  --elev2: 0 3px 8px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.3);
-  --elev3: 0 8px 22px rgba(0,0,0,.5), 0 3px 8px rgba(0,0,0,.35);
+  --shape-small: 8px;
+  --shape-medium: 16px;
+  --shape-large: 24px;
+  --shape-extra-large: 32px;
+  --shape-full: 9999px;
+
+  --elevation-0: none;
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.24);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.24);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.3), 0 3px 8px rgba(0,0,0,0.24);
+  --elevation-4: 0 14px 28px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.24);
+  --elevation-5: 0 19px 38px rgba(0,0,0,0.3), 0 6px 16px rgba(0,0,0,0.24);
+
+  --font: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+  --duration: 0.3s cubic-bezier(0.2, 0, 0, 1);
+
+  --radius-card: 20px;
+  --radius-input: 16px;
+  --radius-button: 100px;
 }
 
+/* ---------- تم روشن ---------- */
 [data-theme="light"] {
-  --md-bg: #EDE7F6;
+  --md-bg: #F5F0FA;
   --md-surface: #FFFBFE;
-  --md-surface-1: #F7F2FA;
-  --md-surface-2: #F1ECF5;
-  --md-surface-3: #EAE3F0;
+  --md-surface-dim: #DED8E1;
+  --md-surface-bright: #FFFBFE;
+  --md-surface-container: #F3EDF7;
+  --md-surface-container-high: #ECE6F0;
+  --md-surface-container-highest: #E6E0E9;
+  --md-surface-container-low: #F7F2FA;
+  --md-surface-container-lowest: #FFFFFF;
+
   --md-on-surface: #1C1B1F;
-  --md-on-surface-var: #49454F;
+  --md-on-surface-medium: #49454F;
+  --md-on-surface-variant: #49454F;
   --md-outline: #79747E;
-  --md-outline-var: #CAC4D0;
+  --md-outline-variant: #CAC4D0;
+
   --md-primary-container: #EADDFF;
   --md-on-primary-container: #21005D;
   --md-secondary-container: #E8DEF8;
   --md-on-secondary: #332D41;
+
+  --md-error: #BA1A1A;
   --md-error-container: #F9DEDC;
+  --md-on-error: #FFFFFF;
   --md-on-error-container: #410E0B;
 
-  --elev1: 0 1px 2px rgba(60,40,90,.15), 0 1px 3px rgba(60,40,90,.1);
-  --elev2: 0 2px 6px rgba(60,40,90,.16), 0 1px 3px rgba(60,40,90,.12);
-  --elev3: 0 6px 18px rgba(60,40,90,.2), 0 2px 6px rgba(60,40,90,.14);
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-3: 0 10px 20px rgba(0,0,0,0.1), 0 3px 8px rgba(0,0,0,0.06);
+  --elevation-4: 0 14px 28px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
 }
 
+/* ---------- Reset & Base ---------- */
 *, *::before, *::after {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
   height: 100%;
+  font-family: var(--font);
+  background: var(--md-bg);
+  color: var(--md-on-surface);
+  transition: background var(--duration), color var(--duration);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  font-family: var(--font);
-  color: var(--md-on-surface);
-  background: var(--md-bg);
-  min-height: 100vh;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  overflow-x: hidden;
-  transition: background-color var(--dur), color var(--dur);
-  padding: 0;
-  overscroll-behavior-y: contain;
+  align-items: center;
+  min-height: 100vh;
+  padding: 16px;
+  background: var(--md-bg);
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: -80px;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(103,80,164,.5), transparent 55%),
-    radial-gradient(circle at 85% 100%, rgba(103,80,164,.4), transparent 50%),
-    var(--md-bg);
-  filter: blur(70px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-@media (min-width: 560px) {
-  body {
-    padding: 28px 16px;
-    align-items: center;
-  }
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-textarea {
-  font-family: inherit;
-}
-
+/* ---------- اسکرول ---------- */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--md-outline-var);
+  background: var(--md-outline-variant);
   border-radius: 10px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-outline);
+}
 
-/* ========== قاب گوشی ========== */
+/* ---------- قاب گوشی ---------- */
 .phone-frame {
   position: relative;
   width: 100%;
   max-width: 430px;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 932px;
   background: var(--md-surface);
+  border-radius: 40px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  isolation: isolate;
+  box-shadow: var(--elevation-5), 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-@media (min-width: 560px) {
+@media (max-width: 500px) {
   .phone-frame {
-    min-height: min(880px, 94vh);
-    height: min(880px, 94vh);
-    border-radius: 40px;
-    box-shadow: var(--elev3), 0 0 0 10px #08070a, 0 0 0 11px #3a3640;
+    border-radius: 0;
+    max-height: 100vh;
+    height: 100vh;
+  }
+  body {
+    padding: 0;
   }
 }
 
-/* ========== نوار وضعیت ========== */
+/* ---------- نوار وضعیت ---------- */
 .status-bar {
-  flex: none;
+  flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 22px 4px;
+  align-items: center;
+  padding: 12px 24px 8px;
   font-size: 13px;
   font-weight: 600;
   color: var(--md-on-surface);
   background: var(--md-surface);
+  letter-spacing: 0.5px;
 }
 .status-bar .icons {
   display: flex;
+  gap: 6px;
   align-items: center;
-  gap: 5px;
 }
 .status-bar svg {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 }
 
-/* ========== نوار بالایی ========== */
+/* ---------- نوار بالایی ---------- */
 .app-topbar {
-  flex: none;
+  flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 6px 14px 14px;
+  align-items: center;
+  padding: 8px 16px 16px;
   background: var(--md-surface);
 }
 .app-topbar .title-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 .app-icon-badge {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--shape-md);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--shape-medium);
   background: var(--md-primary-container);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+}
+.app-icon-badge:hover {
+  transform: scale(1.05);
 }
 .app-icon-badge svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: var(--md-on-primary-container);
 }
 .app-topbar h1 {
-  font-size: 20px;
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -.2px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--md-primary), var(--md-tertiary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ---------- دکمه‌های آیکون ---------- */
 .icon-btn {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--md-on-surface-var);
+  color: var(--md-on-surface-variant);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: background var(--dur);
-}
-.icon-btn svg {
-  width: 22px;
-  height: 22px;
+  transition: background var(--duration), transform 0.2s ease;
 }
 .icon-btn:hover {
-  background: rgba(255,255,255,.06);
-}
-[data-theme="light"] .icon-btn:hover {
-  background: rgba(0,0,0,.05);
+  background: rgba(255,255,255,0.08);
 }
 .icon-btn:active {
-  background: rgba(255,255,255,.12);
+  transform: scale(0.92);
 }
-[data-theme="light"] .icon-btn:active {
-  background: rgba(0,0,0,.1);
+.icon-btn svg {
+  width: 24px;
+  height: 24px;
 }
 
-/* ========== منوی کشویی ========== */
+/* ---------- منوی کشویی ---------- */
 .drawer-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.45);
+  background: rgba(0,0,0,0.6);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--dur);
+  transition: opacity var(--duration);
   z-index: 70;
+  backdrop-filter: blur(4px);
 }
 .drawer-scrim.show {
   opacity: 1;
@@ -253,140 +276,146 @@ textarea {
 .drawer {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
-  width: 82%;
-  max-width: 300px;
-  background: var(--md-surface-1);
-  box-shadow: var(--elev3);
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  background: var(--md-surface-container);
+  box-shadow: var(--elevation-5);
   transform: translateX(100%);
-  transition: transform .28s cubic-bezier(.2, 0, 0, 1);
+  transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
   z-index: 80;
   display: flex;
   flex-direction: column;
-  border-radius: 20px 0 0 20px;
-  overflow: hidden;
+  border-radius: 28px 0 0 28px;
 }
 .drawer.open {
   transform: translateX(0);
 }
 
 .drawer-header {
+  padding: 28px 20px 20px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 24px 18px 18px;
+  gap: 14px;
+  border-bottom: 1px solid var(--md-outline-variant);
 }
 .drawer-header .app-icon-badge {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
 }
 .drawer-header .app-icon-badge svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 .drawer-header h2 {
-  margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  margin: 0;
 }
 .drawer-header p {
+  font-size: 12px;
+  color: var(--md-on-surface-medium);
   margin: 2px 0 0;
-  font-size: 11.5px;
-  color: var(--md-on-surface-var);
 }
 
 .drawer-list {
-  padding: 6px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  padding: 12px 8px;
+  flex: 1;
+  overflow-y: auto;
 }
 .drawer-item {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 12px;
+  padding: 12px 16px;
   border-radius: var(--shape-full);
   color: var(--md-on-surface);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
+  transition: background var(--duration);
+  cursor: pointer;
 }
 .drawer-item:hover {
-  background: rgba(255,255,255,.06);
-}
-[data-theme="light"] .drawer-item:hover {
-  background: rgba(0,0,0,.05);
+  background: rgba(255,255,255,0.06);
 }
 .drawer-item .drawer-icon {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  flex: none;
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .drawer-item .drawer-icon svg {
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
 }
 .drawer-item .drawer-text strong {
   display: block;
-  font-size: 13.5px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
 }
 .drawer-item .drawer-text span {
-  display: block;
-  font-size: 11.5px;
-  color: var(--md-on-surface-var);
-  margin-top: 1px;
-}
-.drawer-footer {
-  margin-top: auto;
-  padding: 14px 22px calc(18px + env(safe-area-inset-bottom));
-  font-size: 10.5px;
-  color: var(--md-on-surface-var);
-  text-align: center;
+  font-size: 12px;
+  color: var(--md-on-surface-medium);
 }
 
-/* ========== محتوا ========== */
+.drawer-footer {
+  padding: 16px 20px 24px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--md-on-surface-medium);
+  border-top: 1px solid var(--md-outline-variant);
+}
+
+/* ---------- محتوای اصلی ---------- */
 .app-content {
   flex: 1;
   overflow-y: auto;
-  padding: 4px 14px 100px;
+  padding: 8px 16px 100px;
   scroll-behavior: smooth;
 }
+
 .view {
   display: none;
-  animation: viewIn .25s cubic-bezier(.2, 0, 0, 1);
+  animation: fadeSlideIn 0.3s ease;
 }
 .view.active {
   display: block;
 }
-@keyframes viewIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ========== نوار زبان ========== */
+/* ---------- نوار زبان ---------- */
 .lang-bar {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 10px 0 12px;
+  gap: 8px;
+  margin: 8px 0 16px;
 }
 .lang-chip {
   flex: 1;
-  min-width: 0;
   position: relative;
-  background: var(--md-surface-2);
+  background: var(--md-surface-container-high);
   border-radius: var(--shape-full);
-  display: flex;
-  align-items: center;
+  border: 1px solid var(--md-outline-variant);
+  transition: border-color var(--duration), box-shadow var(--duration);
+}
+.lang-chip:focus-within {
+  border-color: var(--md-primary);
+  box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.3);
 }
 .lang-chip select {
   width: 100%;
@@ -396,32 +425,33 @@ textarea {
   border: none;
   outline: none;
   color: var(--md-on-surface);
-  font-family: inherit;
+  font-family: var(--font);
   font-size: 14px;
   font-weight: 600;
-  padding: 12px 34px 12px 14px;
+  padding: 14px 40px 14px 16px;
   cursor: pointer;
 }
 .lang-chip select option {
-  background: var(--md-surface-2);
+  background: var(--md-surface-container);
   color: var(--md-on-surface);
 }
 .lang-chip::after {
   content: '';
   position: absolute;
-  left: 14px;
+  left: 16px;
   top: 50%;
-  width: 8px;
-  height: 8px;
-  border-left: 2px solid var(--md-on-surface-var);
-  border-bottom: 2px solid var(--md-on-surface-var);
-  transform: translateY(-65%) rotate(-45deg);
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid var(--md-on-surface-medium);
+  border-bottom: 2px solid var(--md-on-surface-medium);
+  transform: translateY(-60%) rotate(-45deg);
   pointer-events: none;
 }
+
 .swap-btn {
-  flex: none;
-  width: 40px;
-  height: 40px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: none;
   background: var(--md-primary-container);
@@ -430,25 +460,36 @@ textarea {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  transition: background var(--duration), transform 0.3s ease;
+}
+.swap-btn:hover {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.swap-btn:active {
+  transform: scale(0.9);
 }
 .swap-btn svg {
-  width: 19px;
-  height: 19px;
-  transition: transform .35s cubic-bezier(.2, 0, 0, 1);
+  width: 22px;
+  height: 22px;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1);
 }
 .swap-btn.spin svg {
   transform: rotate(180deg);
 }
 
-/* ========== کارت‌های متن ========== */
+/* ---------- کارت‌های متن ---------- */
 .text-card {
-  background: var(--md-surface-1);
-  border-radius: var(--shape-lg);
-  box-shadow: var(--elev1);
-  margin-bottom: 12px;
-  overflow: hidden;
+  background: var(--md-surface-container-high);
+  border-radius: var(--radius-card);
+  box-shadow: var(--elevation-1);
+  margin-bottom: 14px;
+  border: 1px solid var(--md-outline-variant);
+  transition: border-color var(--duration), box-shadow var(--duration);
+}
+.text-card:focus-within {
+  border-color: var(--md-primary);
+  box-shadow: var(--elevation-2), 0 0 0 3px rgba(103, 80, 164, 0.15);
 }
 .text-card textarea {
   width: 100%;
@@ -457,280 +498,299 @@ textarea {
   outline: none;
   background: transparent;
   color: var(--md-on-surface);
-  font-size: 16.5px;
-  line-height: 1.8;
-  padding: 16px 16px 6px;
-  min-height: 110px;
+  font-size: 17px;
+  line-height: 1.9;
+  padding: 18px 18px 6px;
+  min-height: 120px;
+  font-family: var(--font);
 }
 .text-card textarea::placeholder {
-  color: var(--md-on-surface-var);
-  opacity: .8;
+  color: var(--md-on-surface-medium);
+  opacity: 0.7;
 }
-.text-card textarea[dir="ltr"] {
-  text-align: left;
+.text-card textarea[readonly] {
+  opacity: 0.9;
 }
 
 .card-toolbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 2px 8px 8px 14px;
-  gap: 6px;
+  align-items: center;
+  padding: 4px 12px 12px 16px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .card-toolbar .tools {
   display: flex;
   align-items: center;
   gap: 2px;
 }
+
 .char-count {
-  font-size: 11.5px;
-  color: var(--md-on-surface-var);
-  white-space: nowrap;
+  font-size: 12px;
+  color: var(--md-on-surface-medium);
+  font-weight: 500;
+  padding: 4px 12px;
+  background: var(--md-surface-container-low);
+  border-radius: var(--shape-full);
 }
 
 .tool-btn {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--md-on-surface-var);
+  color: var(--md-on-surface-variant);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: background var(--dur), color var(--dur);
-}
-.tool-btn svg {
-  width: 18px;
-  height: 18px;
+  transition: background var(--duration), color var(--duration), transform 0.2s ease;
 }
 .tool-btn:hover {
-  background: rgba(255,255,255,.07);
+  background: rgba(255,255,255,0.08);
   color: var(--md-on-surface);
 }
-[data-theme="light"] .tool-btn:hover {
-  background: rgba(0,0,0,.05);
+.tool-btn:active {
+  transform: scale(0.9);
 }
 .tool-btn:disabled {
-  opacity: .3;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 .tool-btn.favorited {
-  color: #FFD166;
+  color: #FFD700;
 }
 .tool-btn.recording {
   color: var(--md-on-error-container);
   background: var(--md-error-container);
-  animation: pulseRec 1.1s infinite;
+  animation: pulse-recording 1.2s infinite;
 }
-@keyframes pulseRec {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(242,184,181,.45); }
-  50% { box-shadow: 0 0 0 9px rgba(242,184,181,0); }
+@keyframes pulse-recording {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(242, 184, 181, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(242, 184, 181, 0); }
 }
 
-/* ========== خطا ========== */
+/* ---------- خطا ---------- */
 .error-banner {
   display: none;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  margin-bottom: 12px;
-  border-radius: var(--shape-md);
+  gap: 12px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  border-radius: var(--shape-medium);
   background: var(--md-error-container);
   color: var(--md-on-error-container);
-  font-size: 13.5px;
+  font-size: 14px;
+  border-left: 4px solid var(--md-error);
 }
 .error-banner.show {
   display: flex;
 }
 .error-banner svg {
-  width: 18px;
-  height: 18px;
-  flex: none;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
-/* ========== دکمه ترجمه ========== */
+/* ---------- دکمه ترجمه ---------- */
 .translate-fill-btn {
   width: 100%;
   border: none;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: var(--shape-full);
+  padding: 16px;
+  border-radius: var(--radius-button);
   background: var(--md-primary);
   color: var(--md-on-primary);
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: var(--elevation-2);
+  transition: all var(--duration);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--elev1);
-  transition: box-shadow var(--dur);
-  margin-bottom: 18px;
+}
+.translate-fill-btn:hover {
+  box-shadow: var(--elevation-4);
+  transform: translateY(-1px);
 }
 .translate-fill-btn:active {
-  box-shadow: none;
+  box-shadow: var(--elevation-1);
+  transform: scale(0.98);
 }
 .translate-fill-btn:disabled {
-  opacity: .6;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
-.translate-fill-btn svg {
-  width: 19px;
-  height: 19px;
-}
-.spinner {
-  width: 17px;
-  height: 17px;
+.translate-fill-btn .spinner {
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  border: 2.5px solid rgba(255,255,255,.35);
+  border: 3px solid rgba(255,255,255,0.3);
   border-top-color: #fff;
-  animation: rotate .7s linear infinite;
+  animation: spin 0.7s linear infinite;
   display: none;
 }
 .translate-fill-btn.loading .spinner {
-  display: inline-block;
+  display: block;
 }
 .translate-fill-btn.loading .btn-icon {
   display: none;
 }
-@keyframes rotate {
+.translate-fill-btn .btn-icon {
+  width: 22px;
+  height: 22px;
+}
+@keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 .hint-row {
   text-align: center;
-  color: var(--md-on-surface-var);
-  font-size: 11.5px;
-  margin: -6px 0 18px;
+  color: var(--md-on-surface-medium);
+  font-size: 12px;
+  margin: -4px 0 20px;
 }
 kbd {
-  background: var(--md-surface-3);
-  border-radius: 5px;
-  padding: 1px 6px;
-  font-size: 10.5px;
-  font-family: inherit;
+  background: var(--md-surface-container-highest);
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: var(--font);
+  border: 1px solid var(--md-outline-variant);
+  color: var(--md-on-surface);
 }
 
-/* ========== لیست‌ها ========== */
+/* ---------- لیست‌ها ---------- */
 .view-title {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
-  margin: 10px 2px 14px;
+  margin: 12px 0 16px;
+  color: var(--md-on-surface);
 }
+
 .list-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 14px;
   padding: 60px 20px;
-  color: var(--md-on-surface-var);
+  color: var(--md-on-surface-medium);
   text-align: center;
 }
 .list-empty svg {
-  width: 48px;
-  height: 48px;
-  opacity: .5;
+  width: 56px;
+  height: 56px;
+  opacity: 0.4;
 }
 .list-empty p {
+  font-size: 14px;
   margin: 0;
-  font-size: 13.5px;
 }
 
 .entry-item {
-  background: var(--md-surface-1);
-  border-radius: var(--shape-md);
-  padding: 12px 14px;
-  margin-bottom: 8px;
+  background: var(--md-surface-container);
+  border-radius: var(--shape-medium);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  border: 1px solid var(--md-outline-variant);
+  transition: border-color var(--duration), box-shadow var(--duration);
   cursor: pointer;
 }
+.entry-item:hover {
+  border-color: var(--md-primary);
+  box-shadow: var(--elevation-2);
+}
+
 .entry-meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  align-items: center;
+  margin-bottom: 8px;
 }
 .lang-tag {
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--md-on-secondary);
   background: var(--md-secondary-container);
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--shape-full);
+  font-weight: 600;
 }
 .entry-actions {
   display: flex;
-  gap: 2px;
+  gap: 4px;
 }
 .entry-actions button {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--md-on-surface-var);
+  color: var(--md-on-surface-variant);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background var(--duration);
 }
 .entry-actions button:hover {
-  background: rgba(255,255,255,.08);
-}
-[data-theme="light"] .entry-actions button:hover {
-  background: rgba(0,0,0,.06);
+  background: rgba(255,255,255,0.08);
 }
 .entry-actions button svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
+
 .entry-text {
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 .entry-text .translated {
-  color: var(--md-on-surface-var);
-  font-size: 12.5px;
-  margin-top: 3px;
+  color: var(--md-on-surface-medium);
+  font-size: 13px;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--md-outline-variant);
 }
 
 .text-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
   justify-content: center;
+  gap: 8px;
   width: 100%;
   background: transparent;
   border: none;
-  cursor: pointer;
   color: var(--md-error);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
-  padding: 12px;
-  margin-top: 4px;
+  padding: 14px;
   border-radius: var(--shape-full);
+  cursor: pointer;
+  transition: background var(--duration);
 }
 .text-btn:hover {
   background: var(--md-error-container);
   color: var(--md-on-error-container);
 }
 .text-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
 }
 
-/* ========== FAB ========== */
+/* ---------- FAB ---------- */
 .fab {
   position: absolute;
-  bottom: 88px;
-  left: 20px;
-  width: 58px;
-  height: 58px;
+  bottom: 96px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
   border-radius: 20px;
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
@@ -739,67 +799,70 @@ kbd {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--elev2);
+  box-shadow: var(--elevation-4);
   z-index: 40;
-  transition: transform var(--dur), box-shadow var(--dur);
-  overflow: hidden;
+  transition: all var(--duration);
+}
+.fab:hover {
+  box-shadow: var(--elevation-5);
+  transform: scale(1.05);
 }
 .fab:active {
-  transform: scale(.94);
-  box-shadow: var(--elev1);
+  transform: scale(0.92);
 }
 .fab svg {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
 }
 .fab .spinner {
-  border-color: rgba(33,0,93,.25);
+  border-color: rgba(33,0,93,0.25);
   border-top-color: var(--md-on-primary-container);
 }
 .fab.loading svg {
   display: none;
 }
 .fab.loading .spinner {
-  display: inline-block;
+  display: block;
 }
 .fab.hidden {
   display: none;
 }
 
-/* ========== نوار پایین ========== */
+/* ---------- نوار پایین ---------- */
 .bottom-nav {
-  flex: none;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 8px 6px calc(10px + env(safe-area-inset-bottom));
-  background: var(--md-surface-2);
-  border-top: 1px solid var(--md-outline-var);
+  padding: 6px 8px 12px;
+  background: var(--md-surface-container);
+  border-top: 1px solid var(--md-outline-variant);
   position: relative;
   z-index: 30;
 }
 .nav-item {
   flex: 1;
-  max-width: 120px;
+  max-width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   background: transparent;
   border: none;
+  color: var(--md-on-surface-variant);
   cursor: pointer;
-  padding: 6px 4px;
-  color: var(--md-on-surface-var);
+  padding: 6px 8px;
+  transition: color var(--duration);
   position: relative;
 }
 .nav-item .pill {
-  width: 52px;
-  height: 26px;
+  padding: 6px 16px;
   border-radius: var(--shape-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--dur);
+  gap: 6px;
+  transition: background var(--duration);
 }
 .nav-item.active .pill {
   background: var(--md-secondary-container);
@@ -808,48 +871,65 @@ kbd {
   color: var(--md-on-surface);
 }
 .nav-item svg {
-  width: 21px;
-  height: 21px;
+  width: 22px;
+  height: 22px;
 }
 .nav-item span {
   font-size: 11px;
   font-weight: 600;
 }
+.nav-item .badge {
+  position: absolute;
+  top: 2px;
+  right: 50%;
+  transform: translateX(50%);
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--shape-full);
+  min-width: 16px;
+  text-align: center;
+}
 
-/* ========== ریپل ========== */
+/* ---------- ریپل ---------- */
 .ripple-el {
   position: absolute;
   border-radius: 50%;
   background: currentColor;
-  opacity: .25;
+  opacity: 0.2;
   transform: scale(0);
-  animation: rippleAnim .55s ease-out;
+  animation: ripple 0.6s ease-out;
   pointer-events: none;
 }
-@keyframes rippleAnim {
-  to { transform: scale(2.6); opacity: 0; }
+@keyframes ripple {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 
-/* ========== اسنکبار ========== */
+/* ---------- اسنکبار ---------- */
 .snackbar {
   position: absolute;
   left: 16px;
   right: 16px;
-  bottom: 80px;
-  background: var(--md-surface-3);
+  bottom: 88px;
+  background: var(--md-surface-container-highest);
   color: var(--md-on-surface);
-  padding: 13px 18px;
-  border-radius: var(--shape-sm);
-  font-size: 13.5px;
+  padding: 14px 20px;
+  border-radius: var(--shape-medium);
+  font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: var(--elev2);
+  gap: 12px;
+  box-shadow: var(--elevation-4);
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(16px);
   pointer-events: none;
   z-index: 60;
-  transition: opacity .25s, transform .25s;
+  transition: all 0.3s ease;
 }
 .snackbar.show {
   opacity: 1;
@@ -857,18 +937,36 @@ kbd {
   pointer-events: auto;
 }
 .snackbar svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   color: var(--md-success);
-  flex: none;
+  flex-shrink: 0;
+}
+.snackbar.error svg {
+  color: var(--md-error);
 }
 
-@media (max-width: 359px) {
+/* ---------- واکنش‌گرایی ---------- */
+@media (max-width: 380px) {
+  .app-topbar h1 {
+    font-size: 18px;
+  }
+  .lang-chip select {
+    font-size: 13px;
+    padding: 12px 34px 12px 12px;
+  }
+  .text-card textarea {
+    font-size: 15px;
+    min-height: 100px;
+  }
   .fab {
     width: 52px;
     height: 52px;
+    bottom: 84px;
+    right: 16px;
   }
-  .app-topbar h1 {
-    font-size: 18px;
+  .fab svg {
+    width: 22px;
+    height: 22px;
   }
 }
