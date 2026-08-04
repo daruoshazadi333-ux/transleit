@@ -1,196 +1,201 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>ترجمیار</title>
-<meta name="description" content="مترجم آنلاین">
-<meta name="theme-color" content="#381E72">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ترجمیار</title>
+    <meta name="description" content="مترجم آنلاین با ظاهر و حس یک اپلیکیشن اندروید">
+    <meta name="theme-color" content="#381E72">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="dark">
+<body>
 
-<div class="phone-frame">
-
-  <!-- نوار وضعیت -->
-  <div class="status-bar">
-    <span id="clock">۹:۴۱</span>
-    <div class="icons">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M2 8.5a15 15 0 0120 0M5.5 12a10 10 0 0113 0M9 15.5a5 5 0 016 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="19" r="1.1" fill="currentColor"/></svg>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M2 10h13a2 2 0 012 2v0a2 2 0 01-2 2H2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M19 11h1a1.5 1.5 0 010 3h-1" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="11.6" width="8" height="4.8" fill="currentColor"/></svg>
-    </div>
-  </div>
-
-  <!-- نوار بالایی -->
-  <div class="app-topbar">
-    <div class="title-wrap">
-      <button class="icon-btn ripple" id="menuBtn">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <div class="app-icon-badge">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h1>ترجمیار</h1>
-    </div>
-    <button class="icon-btn ripple" id="themeToggle">
-      <svg id="themeIcon" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-
-  <!-- منوی کشویی -->
-  <div class="drawer-scrim" id="drawerScrim"></div>
-  <aside class="drawer" id="drawer">
-    <div class="drawer-header">
-      <div class="app-icon-badge">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div>
-        <h2>ترجمیار</h2>
-        <p>مترجم آنلاین</p>
-      </div>
-    </div>
-    <nav class="drawer-list">
-      <a class="drawer-item ripple" href="#">
-        <span class="drawer-icon">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span class="drawer-text">
-          <strong>درباره ما</strong>
-          <span>ترجمیار - مترجم رایگان</span>
-        </span>
-      </a>
-    </nav>
-    <div class="drawer-footer">ترجمیار — نسخه ۲.۰</div>
-  </aside>
-
-  <!-- محتوا -->
-  <main class="app-content" id="appContent">
-
-    <section class="view active" id="view-translate">
-
-      <div class="lang-bar">
-        <div class="lang-chip">
-          <select id="sourceLang"></select>
+    <div class="phone-frame" id="phoneFrame">
+        
+        <!-- نوار وضعیت -->
+        <div class="status-bar">
+            <span id="clock">۹:۴۱</span>
+            <div class="icons">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M2 8.5a15 15 0 0120 0M5.5 12a10 10 0 0113 0M9 15.5a5 5 0 016 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="19" r="1.1" fill="currentColor"/></svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M2 10h13a2 2 0 012 2v0a2 2 0 01-2 2H2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M19 11h1a1.5 1.5 0 010 3h-1" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="11.6" width="8" height="4.8" fill="currentColor"/></svg>
+            </div>
         </div>
-        <button class="swap-btn ripple" id="swapBtn">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+        <!-- نوار بالای اپ -->
+        <div class="app-topbar">
+            <div class="title-wrap">
+                <button class="icon-btn ripple" id="menuBtn" aria-label="باز کردن منو">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <div class="app-icon-badge">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h1>ترجمیار</h1>
+            </div>
+            <button class="icon-btn ripple" id="themeToggle" aria-label="تغییر تم">
+                <svg id="themeIcon" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+
+        <!-- منوی کشویی -->
+        <div class="drawer-scrim" id="drawerScrim"></div>
+        <aside class="drawer" id="drawer" aria-hidden="true">
+            <div class="drawer-header">
+                <div class="app-icon-badge">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <h2>ترجمیار</h2>
+                    <p>مترجم آنلاین</p>
+                </div>
+            </div>
+            <nav class="drawer-list">
+                <a class="drawer-item ripple" href="https://rubika.ir/admin10blue" target="_blank" rel="noopener noreferrer">
+                    <span class="drawer-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span class="drawer-text">
+                        <strong>پشتیبانی در روبیکا</strong>
+                        <span>@admin10blue</span>
+                    </span>
+                </a>
+            </nav>
+            <div class="drawer-footer">ترجمیار — نسخه ۱.۰</div>
+        </aside>
+
+        <!-- محتوا -->
+        <main class="app-content" id="appContent">
+            
+            <!-- نمای ترجمه -->
+            <section class="view active" id="view-translate">
+                <div class="lang-bar">
+                    <div class="lang-chip">
+                        <select id="sourceLang" aria-label="زبان مبدا"></select>
+                    </div>
+                    <button class="swap-btn ripple" id="swapBtn" aria-label="جابه‌جایی زبان‌ها">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="lang-chip">
+                        <select id="targetLang" aria-label="زبان مقصد"></select>
+                    </div>
+                </div>
+
+                <div class="error-banner" id="errorBanner">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L14.7 3.86a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span id="errorText">مشکلی در برقراری ارتباط با سرویس ترجمه پیش آمد.</span>
+                </div>
+
+                <div class="text-card">
+                    <textarea id="sourceText" placeholder="متن را وارد کنید…" maxlength="5000"></textarea>
+                    <div class="card-toolbar">
+                        <div class="tools">
+                            <button class="tool-btn ripple" id="micBtn" title="ورودی صوتی" aria-label="تبدیل گفتار به متن">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                            </button>
+                            <button class="tool-btn ripple" id="speakSourceBtn" title="خواندن متن" aria-label="خواندن متن مبدا">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 9a3.5 3.5 0 010 6M18.5 6.5a7 7 0 010 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                            </button>
+                            <button class="tool-btn ripple" id="clearBtn" title="پاک کردن" aria-label="پاک کردن متن">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </div>
+                        <span class="char-count" id="sourceCharCount">۰ / ۵۰۰۰</span>
+                    </div>
+                </div>
+
+                <div class="text-card">
+                    <textarea id="targetText" placeholder="ترجمه اینجا نمایش داده می‌شود…" readonly></textarea>
+                    <div class="card-toolbar">
+                        <div class="tools">
+                            <button class="tool-btn ripple" id="speakTargetBtn" title="خواندن ترجمه" aria-label="خواندن ترجمه">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 9a3.5 3.5 0 010 6M18.5 6.5a7 7 0 010 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                            </button>
+                            <button class="tool-btn ripple" id="copyBtn" title="کپی" aria-label="کپی ترجمه">
+                                <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.8"/></svg>
+                            </button>
+                            <button class="tool-btn ripple" id="favBtn" title="افزودن به علاقه‌مندی‌ها" aria-label="افزودن به علاقه‌مندی‌ها">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                            </button>
+                        </div>
+                        <span class="char-count" id="targetCharCount"></span>
+                    </div>
+                </div>
+
+                <button class="translate-fill-btn ripple" id="translateBtn">
+                    <span class="spinner"></span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>ترجمه کن</span>
+                </button>
+                <div class="hint-row">میانبر <kbd>Ctrl</kbd> + <kbd>Enter</kbd></div>
+            </section>
+
+            <!-- نمای تاریخچه -->
+            <section class="view" id="view-history">
+                <h2 class="view-title">تاریخچه</h2>
+                <div class="list-empty" id="historyEmpty">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 2M21 12a9 9 0 11-3.5-7.13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <p>هنوز ترجمه‌ای انجام نداده‌اید.</p>
+                </div>
+                <div id="historyList"></div>
+                <button class="text-btn ripple" id="clearHistoryBtn" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    پاک کردن کل تاریخچه
+                </button>
+            </section>
+
+            <!-- نمای علاقه‌مندی‌ها -->
+            <section class="view" id="view-favorites">
+                <h2 class="view-title">علاقه‌مندی‌ها</h2>
+                <div class="list-empty" id="favEmpty">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <p>ترجمه‌های مورد علاقه‌تان را با ⭐ نگه دارید.</p>
+                </div>
+                <div id="favList"></div>
+            </section>
+
+        </main>
+
+        <!-- FAB -->
+        <button class="fab ripple" id="translateFab" aria-label="ترجمه کن">
+            <span class="spinner"></span>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="lang-chip">
-          <select id="targetLang"></select>
+
+        <!-- نوار پایین -->
+        <nav class="bottom-nav">
+            <button class="nav-item active ripple" data-view="translate">
+                <span class="pill">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>ترجمه</span>
+            </button>
+            <button class="nav-item ripple" data-view="history">
+                <span class="pill">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 2M21 12a9 9 0 11-3.5-7.13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>تاریخچه</span>
+            </button>
+            <button class="nav-item ripple" data-view="favorites">
+                <span class="pill">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </span>
+                <span>علاقه‌مندی</span>
+            </button>
+        </nav>
+
+        <!-- اسنک‌بار -->
+        <div class="snackbar" id="toast">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="toastText">کپی شد</span>
         </div>
-      </div>
 
-      <div class="error-banner" id="errorBanner">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L14.7 3.86a2 2 0 00-3.4 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span id="errorText">مشکلی در ارتباط با سرویس ترجمه پیش آمد.</span>
-      </div>
+    </div>
 
-      <div class="text-card">
-        <textarea id="sourceText" placeholder="متن را وارد کنید…" maxlength="5000"></textarea>
-        <div class="card-toolbar">
-          <div class="tools">
-            <button class="tool-btn ripple" id="micBtn" title="ورودی صوتی" style="display:none;">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 003-3V6a3 3 0 10-6 0v6a3 3 0 003 3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 11a7 7 0 01-14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </button>
-            <button class="tool-btn ripple" id="speakSourceBtn" title="خواندن متن">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 9a3.5 3.5 0 010 6M18.5 6.5a7 7 0 010 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </button>
-            <button class="tool-btn ripple" id="clearBtn" title="پاک کردن">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <span class="char-count" id="sourceCharCount">۰ / ۵۰۰۰</span>
-        </div>
-      </div>
-
-      <div class="text-card">
-        <textarea id="targetText" placeholder="ترجمه اینجا نمایش داده می‌شود…" readonly></textarea>
-        <div class="card-toolbar">
-          <div class="tools">
-            <button class="tool-btn ripple" id="speakTargetBtn" title="خواندن ترجمه">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 9a3.5 3.5 0 010 6M18.5 6.5a7 7 0 010 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            </button>
-            <button class="tool-btn ripple" id="copyBtn" title="کپی">
-              <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.8"/></svg>
-            </button>
-            <button class="tool-btn ripple" id="favBtn" title="علاقه‌مندی">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <span class="char-count" id="targetCharCount"></span>
-        </div>
-      </div>
-
-      <button class="translate-fill-btn ripple" id="translateBtn">
-        <span class="spinner"></span>
-        <svg class="btn-icon" viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>ترجمه کن</span>
-      </button>
-      <div class="hint-row">میانبر <kbd>Ctrl</kbd> + <kbd>Enter</kbd></div>
-    </section>
-
-    <section class="view" id="view-history">
-      <h2 class="view-title">تاریخچه</h2>
-      <div class="list-empty" id="historyEmpty">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 2M21 12a9 9 0 11-3.5-7.13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p>هنوز ترجمه‌ای انجام نداده‌اید.</p>
-      </div>
-      <div id="historyList"></div>
-      <button class="text-btn ripple" id="clearHistoryBtn" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6h14z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        پاک کردن کل تاریخچه
-      </button>
-    </section>
-
-    <section class="view" id="view-favorites">
-      <h2 class="view-title">علاقه‌مندی‌ها</h2>
-      <div class="list-empty" id="favEmpty">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-        <p>ترجمه‌های مورد علاقه‌تان را با ⭐ نگه دارید.</p>
-      </div>
-      <div id="favList"></div>
-    </section>
-
-  </main>
-
-  <button class="fab ripple" id="translateFab">
-    <span class="spinner"></span>
-    <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-
-  <nav class="bottom-nav">
-    <button class="nav-item active ripple" data-view="translate">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 7 8M12 5c-.6 3-2.7 5.4-5.5 6.8M13 21l4-9 4 9M14.5 18h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-      <span>ترجمه</span>
-    </button>
-    <button class="nav-item ripple" data-view="history">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5l3 2M21 12a9 9 0 11-3.5-7.13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-      <span>تاریخچه</span>
-    </button>
-    <button class="nav-item ripple" data-view="favorites">
-      <span class="pill">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3l-5.8 3.4 1.5-6.6L2.5 9.8l6.7-.6L12 3l2.8 6.2 6.7.6-5.2 4.3 1.5 6.6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-      </span>
-      <span>علاقه‌مندی</span>
-    </button>
-  </nav>
-
-  <div class="snackbar" id="toast">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span id="toastText">کپی شد</span>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
